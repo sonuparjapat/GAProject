@@ -1,0 +1,34 @@
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Edit Profile</h2>
+    <form (ngSubmit)="saveEditedProfile()">
+      <label class="block font-semibold mb-1">Name:</label>
+      <input type="text" [(ngModel)]="profileData.name" name="name" required class="w-full px-4 py-2 border rounded-lg mb-2">
+    
+      <label class="block font-semibold mb-1">Gender:</label>
+      <input type="radio" value="Male" [(ngModel)]="profileData.gender" name="gender" class="mr-2">
+      <span class="mr-6">Male</span>
+      <input type="radio" value="Female" [(ngModel)]="profileData.gender" name="gender" class="mr-2">
+      <span>Female</span>
+    
+      <label class="block font-semibold mb-1">Department:</label>
+      <select [(ngModel)]="profileData.department" name="department" class="w-full px-4 py-2 border rounded-lg mb-2">
+        <option value="Frontend">Frontend</option>
+        <option value="Backend">Backend</option>
+        <option value="FullStack">FullStack</option>
+      </select>
+    
+      <label class="block font-semibold mt-2 mb-1">Mobile Number:</label>
+      <input type="text" [(ngModel)]="profileData.mob" name="mob" class="w-full px-4 py-2 border rounded-lg mb-2">
+    
+      <label class="block font-semibold mb-1">Email:</label>
+      <input type="email" [(ngModel)]="profileData.email" name="email" disabled class="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed mb-2">
+    
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+        Save Profile
+      </button>
+      <button type="button" (click)="cancelEdit()" class="bg-red-500 text-white px-4 py-2 rounded-lg ml-2 hover:bg-red-600 transition-colors">
+        Cancel
+      </button>
+    </form>
+  </div>
+  

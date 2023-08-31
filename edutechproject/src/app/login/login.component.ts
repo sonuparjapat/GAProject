@@ -17,14 +17,18 @@ export class LoginComponent {
       email: this.email,
       password: this.password,
     };
-
+console.log(data)
     this.http.post('https://academyfyagain.onrender.com/instructer/login', data)
       .subscribe((response: any) => {
-        console.log(response);
+        console.log("hi")
+        alert(response.msg)
         // Store the token in local storage
+        localStorage.setItem("insturcterprofile",JSON.stringify(response))
         localStorage.setItem('token', response.token);
         // Navigate to the dashboard
         this.router.navigate(['/dashboard']);
+      },(error)=>{
+        alert(error.error.msg)
       });
   }
 }

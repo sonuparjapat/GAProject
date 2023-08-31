@@ -18,10 +18,12 @@ export class RegistrationComponent {
       email: this.email,
       password: this.password,
     };
-console.log(data)
+// console.log(data)
     this.http.post('https://academyfyagain.onrender.com/instructer/register', data)
       .subscribe(response => {
         console.log(response);
+      },(error)=>{
+        alert(error.error.msg)
       });
   }
 }

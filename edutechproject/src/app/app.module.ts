@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import {RegistrationComponent} from "./registration/registration.component"
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
 RegistrationComponent,
     DashboardComponent,
+    CreateProfileComponent,
+    ProfileEditFormComponent,
 
   ],
   imports: [
