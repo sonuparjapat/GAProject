@@ -19,7 +19,7 @@
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7-3a7 7 0 0 0-14 0 7 7 0 0 0 6.5 6.96 3.992 3.992 0 0 1 5-5.98A7.007 7.007 0 0 0 15 5zm-3 6h-2v2h-1v-2H6v-1h2V9h1v2h2v1z"/>
           </svg>
         </button>
-        <button (click)="toggleEditingProfile()" class="mt-4 flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+        <button (click)="toggleEditingProfile()"  class="mt-4 flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
           <span class="mr-2">Edit Profile</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
             <path d="M2.293 11.293a1 1 0 0 1 0-1.414L9.586 2.293a1 1 0 0 1 1.414 0l3.707 3.707a1 1 0 0 1 0 1.414l-7.293 7.293a1 1 0 0 1-1.414 0l-3.707-3.707z"/>
@@ -27,7 +27,7 @@
           </svg>
         </button>
   
-        <app-profile-edit-form *ngIf="editingProfile"  (cancel)="cancelEdit()" (save)="saveEditedProfile($event)"></app-profile-edit-form>
+        <app-profile-edit-form *ngIf="editingProfile&&profileData"   (cancel)="cancelEdit()" (save)="saveEditedProfile($event)"></app-profile-edit-form>
       </ng-container>
   
       <ng-template #createProfileForm>

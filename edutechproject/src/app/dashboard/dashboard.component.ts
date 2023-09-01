@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
   profileData: any = null;
   creatingProfile: boolean = false;
   editingProfile = false; // Initialize the editingProfile flag
+  
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
   toggleCreatingProfile() {
     this.creatingProfile = !this.creatingProfile;
+    console.log(this.editProfile)
   }
 
   openCreateProfileForm() {
