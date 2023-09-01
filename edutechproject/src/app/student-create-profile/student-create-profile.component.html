@@ -1,0 +1,36 @@
+<!-- <p>student-create-profile works!</p> -->
+<h2 class="text-xl font-semibold mb-4">Create Profile</h2>
+<form (ngSubmit)="createstudentProfile()">
+  <!-- Form fields for creating a profile -->
+  <label class="block font-semibold mb-1">StudentId:</label>
+  <input type="text" [(ngModel)]="studentprofileData.studentId" name="studentId" required class="w-full px-4 py-2 border rounded-lg mb-2">
+  <label class="block font-semibold mb-1">Name:</label>
+  <input type="text" [(ngModel)]="studentprofileData.name" name="name" required class="w-full px-4 py-2 border rounded-lg mb-2">
+  
+  <label class="block font-semibold mb-1">Gender:</label>
+  <input type="radio" value="Male" [(ngModel)]="studentprofileData.gender" name="gender" class="mr-2">
+  <span class="mr-6">Male</span>
+  <input type="radio" value="Female" [(ngModel)]="studentprofileData.gender" name="gender" class="mr-2">
+  <span>Female</span>
+  
+  <label class="block font-semibold mb-1">Mobile Number:</label>
+  <input type="text" [(ngModel)]="studentprofileData.mob" name="mob" pattern="[0-9]*" class="w-full px-4 py-2 border rounded-lg mb-2">
+  
+  <label class="block font-semibold mb-1">Major:</label>
+  <select [(ngModel)]="studentprofileData.major" name="major" class="w-full px-4 py-2 border rounded-lg mb-2">
+    <option value="Frontend">Frontend</option>
+    <option value="Backend">Backend</option>
+    <option value="FullStack">FullStack</option>
+  </select>
+  
+  <label class="block font-semibold mb-1">Email:</label>
+  <input type="email" [(ngModel)]="studentprofileData.email" name="email" disabled class="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed mb-2">
+  <label class="block font-semibold mb-1">Dob:</label>
+  <input type="date" [(ngModel)]="studentprofileData.dob" name="dob"  class="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed mb-2">
+  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors" (click)="createstudentProfile()">
+    Save Profile
+  </button>
+  <button type="button" (click)="cancelstudentCreate()" class="ml-2 text-gray-500 hover:text-gray-700">
+    Cancel
+  </button>
+</form>

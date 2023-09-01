@@ -11,14 +11,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/instructer/register`, data);
+    return this.http.post(`${this.baseUrl}/user/register`, data);
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/instructer/login`, data);
+    return this.http.post(`${this.baseUrl}/user/login`, data);
   }
   getUserProfile(): Observable<any> {
-    const url = `${this.baseUrl}/instructerdata/userprofile`;
+    const url = `${this.baseUrl}/userdata/instructerprofile`;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   createProfile(profileData: any): Observable<any> {
-    const url = `${this.baseUrl}/instructerdata/profile`;
+    const url = `${this.baseUrl}/userdata/instructerprofile`;
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export class ApiService {
   }
   editProfile(tokenm: string, editedProfile: any): Observable<any> {
     const token=localStorage.getItem("token")
-    const url = `${this.baseUrl}/instructerdata/profile/edit/${editedProfile._id}`; // Replace 'id' with the actual profile ID
+    const url = `${this.baseUrl}/userdata/instructerprofile/edit/${editedProfile._id}`; // Replace 'id' with the actual profile ID
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -44,5 +44,50 @@ export class ApiService {
     return this.http.patch(url, editedProfile, { headers });
   }
   
-  
+  // student system>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  getstudentProfile(): Observable<any> {
+    const url = `${this.baseUrl}/userdata/studentprofile`;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(url, { headers });
+  }
+
+  createstudentProfile(studentprofileData: any): Observable<any> {
+    const url = `${this.baseUrl}/userdata/studentprofile`;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(url, studentprofileData, { headers });
+  }
+  editstudentProfile(tokenm: string, editedProfile: any): Observable<any> {
+    const token=localStorage.getItem("token")
+    const url = `${this.baseUrl}/userdata/studentprofile/edit/${editedProfile._id}`; // Replace 'id' with the actual profile ID
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  console.log(token)
+    return this.http.patch(url, editedProfile, { headers });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

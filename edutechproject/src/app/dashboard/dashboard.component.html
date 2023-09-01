@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center h-screen bg-gray-100">
+<div *ngIf="loginuser === 'instructer'" class="flex items-center justify-center h-screen bg-gray-100">
     <div class="w-3/5 bg-white p-6 rounded-lg shadow-lg">
       <ng-container *ngIf="!creatingProfile; else createProfileForm">
         <div *ngIf="profileData; else noProfileData">
@@ -45,4 +45,59 @@
       </ng-template>
     </div>
   </div>
+
+
+  <!-- studentside************************************************************************************ -->
+
+
+
+  <div *ngIf="loginuser === 'student'" class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="w-3/5 bg-white p-6 rounded-lg shadow-lg">
+      <ng-container *ngIf="!creatingstudentProfile; else createstudentProfileForm">
+        <div *ngIf="!editingstudentProfile && studentprofileData; else noProfileData">
+          <h2 class="text-xl font-semibold mb-4">Profile</h2>
+          <!-- Display user profile data -->
+          <p><strong>Name:</strong> {{ studentprofileData.name }}</p>
+          <p><strong>Gender:</strong> {{ studentprofileData.gender }}</p>
+          <p><strong>Mobile Number:</strong> {{ studentprofileData.mob }}</p>
+          <p><strong>Major:</strong> {{ studentprofileData.major }}</p>
+          <p><strong>Email:</strong> {{ studentprofileData.email }}</p>
+          <p><strong>Dob:</strong> {{ studentprofileData.dob }}</p>
+          <p><strong>StudentId:</strong> {{ studentprofileData.studentId }}</p>
+        </div>
+        <ng-template #noProfileData>
+          <p *ngIf="!editingstudentProfile">No profile data available.</p>
+        </ng-template>
+        <button *ngIf="!studentprofileData" (click)="openCreatestudentProfileForm()" class="mt-4 flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+          <span class="mr-2">Create Profile</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7-3a7 7 0 0 0-14 0 7 7 0 0 0 6.5 6.96 3.992 3.992 0 0 1 5-5.98A7.007 7.007 0 0 0 15 5zm-3 6h-2v2h-1v-2H6v-1h2V9h1v2h2v1z"/>
+          </svg>
+        </button>
+        <button (click)="toggleEditingstudentProfile()"  class="mt-4 flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+          <span class="mr-2">Edit Profile</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M2.293 11.293a1 1 0 0 1 0-1.414L9.586 2.293a1 1 0 0 1 1.414 0l3.707 3.707a1 1 0 0 1 0 1.414l-7.293 7.293a1 1 0 0 1-1.414 0l-3.707-3.707z"/>
+            <path fill-rule="evenodd" d="M12.646 1.646a2 2 0 0 1 2.708-.083l.103.083 1 1a2 2 0 0 1 .083 2.708l-.083.103-10 10a2 2 0 0 1-2.708.083l-.103-.083-1-1a2 2 0 0 1-.083-2.708l.083-.103 10-10z"/>
+          </svg>
+        </button>
   
+        <app-student-profile-edit-form *ngIf="editingstudentProfile&&studentprofileData"   (cancel)="cancelstudentEdit()" (save)="savestudentEditedProfile($event)"></app-student-profile-edit-form>
+      </ng-container>
+  
+      <ng-template #createstudentProfileForm>
+        <!-- <div *ngIf="creatingstudentProfile">hello</div> -->
+        <app-student-create-profile
+          *ngIf="creatingstudentProfile"
+          (cancel)="toggleCreatingstudentProfile()"
+          (create)="createstudentProfile($event)"
+        ></app-student-create-profile>
+        <button *ngIf="!studentprofileData" (click)="toggleCreatingstudentProfile()" class="mt-4 flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+          <span class="mr-2">Create Profile</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7-3a7 7 0 0 0-14 0 7 7 0 0 0 6.5 6.96 3.992 3.992 0 0 1 5-5.98A7.007 7.007 0 0 0 15 5zm-3 6h-2v2h-1v-2H6v-1h2V9h1v2h2v1z"/>
+          </svg>
+        </button>
+      </ng-template>
+    </div>
+  </div>

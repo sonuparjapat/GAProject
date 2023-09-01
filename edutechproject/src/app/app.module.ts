@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ProfileEditFormComponent } from './profile-edit-form/profile-edit-form.component';
+import { StudentCreateProfileComponent } from './student-create-profile/student-create-profile.component';
+import { StudentProfileEditFormComponent } from './student-profile-edit-form/student-profile-edit-form.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ RegistrationComponent,
     DashboardComponent,
     CreateProfileComponent,
     ProfileEditFormComponent,
+    StudentCreateProfileComponent,
+    StudentProfileEditFormComponent,
 
   ],
   imports: [

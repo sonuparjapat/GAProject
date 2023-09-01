@@ -19,7 +19,7 @@ export class RegistrationComponent {
       password: this.password,
     };
 // console.log(data)
-    this.http.post('https://academyfyagain.onrender.com/instructer/register', data)
+    this.http.post('https://academyfyagain.onrender.com/user/register', data)
       .subscribe(response => {
         console.log(response);
       },(error)=>{

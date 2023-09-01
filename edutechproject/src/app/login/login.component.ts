@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-
+  loginas:string="";
+usertoken:any=localStorage.getItem("token")
   constructor(private http: HttpClient, private router: Router) {}
 
   login(): void {
@@ -17,12 +18,13 @@ export class LoginComponent {
       email: this.email,
       password: this.password,
     };
-console.log(data)
-    this.http.post('https://academyfyagain.onrender.com/instructer/login', data)
+// console.log(data)
+    this.http.post('https://academyfyagain.onrender.com/user/login', data)
       .subscribe((response: any) => {
-        console.log("hi")
+        // console.log("hi")
         alert(response.msg)
         // Store the token in local storage
+        localStorage.setItem("loginas",this.loginas)
         localStorage.setItem("insturcterprofile",JSON.stringify(response))
         localStorage.setItem('token', response.token);
         // Navigate to the dashboard
