@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { catchError} from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -109,7 +111,7 @@ getInstructorAssignments(): Observable<any[]> {
     Authorization: `Bearer ${localStorage.getItem('token')}`
   });
 
-  return this.http.get<any[]>(`${this.baseUrl}/getinstructorassignment`, { headers });
+  return this.http.get<any[]>(`${this.baseUrl}/assignment/allinstructerassignment`, { headers });
 }
 // create instructer assignments
 createInstructorAssignment(assignmentData: any): Observable<any> {
@@ -118,12 +120,47 @@ createInstructorAssignment(assignmentData: any): Observable<any> {
     Authorization: `Bearer ${localStorage.getItem('token')}`
   });
 
-  return this.http.post<any>(`${this.baseUrl}/assignment/instructorassignment`, assignmentData, { headers });
+  return this.http.post<any>(`${this.baseUrl}/assignment/instructerassignment`, assignmentData, { headers });
 }
 
 
 
+getAssignmentById(id: number): Observable<any> {
+  const url = `${this.baseUrl}/assignment/getinstructerassignment/${id}`;
+  console.log(id)
+  
+  // Include the token in the headers
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('token')
+  });
+  
+  // Pass the headers in the GET request
+  return this.http.get(url, { headers });
+}
 
+updateAssignment(id: number, assignmentData: any): Observable<any> {
+  const url = `${this.baseUrl}/assignment/patchassignment/${id}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('token') // Include the token in the headers
+  });
+  return this.http.patch(url, assignmentData, { headers });
+}
+
+deleteAssignment(assignmentId: string): Observable<any> {
+  const url = `${this.baseUrl}/assignment/deleteassignment/${assignmentId}`;
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  });
+
+  return this.http.delete<any>(url, { headers }).pipe(
+    catchError((error) => {
+      console.error('Error:', error);
+      return throwError(error);
+    })
+  );
+}
 
 
 }

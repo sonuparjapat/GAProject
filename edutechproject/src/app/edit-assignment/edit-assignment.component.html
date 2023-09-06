@@ -1,0 +1,28 @@
+<div class="max-w-md mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Edit Assignment</h2>
+    <form (ngSubmit)="updateAssignment()" class="space-y-4">
+      <div class="space-y-2">
+        <label for="name" class="block text-sm font-medium">Assignment Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="assignment.name" required
+          class="w-full border rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+      </div>
+      <div class="space-y-2">
+        <label for="description" class="block text-sm font-medium">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="assignment.description" required
+          class="w-full border rounded px-3 py-2 focus:outline-none focus:border-blue-500"></textarea>
+      </div>
+      <div class="space-y-2">
+        <label for="deadline" class="block text-sm font-medium">Deadline:</label>
+        <input type="date" id="deadline" name="deadline" [(ngModel)]="assignment.deadline" required
+          class="w-full border rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+      </div>
+      <!-- Add other assignment properties here as needed -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+  

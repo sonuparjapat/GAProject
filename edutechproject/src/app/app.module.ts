@@ -15,6 +15,7 @@ import { StudentProfileEditFormComponent } from './student-profile-edit-form/stu
 import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
+import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ RegistrationComponent,
     StudentProfileEditFormComponent,
     AssignmentDetailComponent,
     CreateAssignmentComponent,
+    EditAssignmentComponent,
    
 
   ],

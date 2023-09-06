@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   profileData: any = null;
-
+  updatedData: any = {}; 
   loginuser:any=localStorage.getItem("loginas")
   creatingProfile: boolean = false;
   editingProfile = false; // Initialize the editingProfile flag
@@ -202,7 +202,35 @@ cancelstudentEdit() {
 openCreateAssignmentForm() {
   // You can navigate to a new route or show a modal for assignment creation
   // Example: Navigate to a route for assignment creation
+
   this.router.navigate(['/create-assignment']);
 }
+deleteassignment(assignmentId: string) {
+  this.apiService.deleteAssignment(assignmentId).subscribe((response) => {
+    alert(response.msg)
+  });
+}
+showEditForm = false; // Initialize to false
+ // Define the updatedData object
 
+
+
+// Define the editAssignment method
+editAssignment(assignmentId: number) {
+  // Call the API to update the assignment with updatedData
+  this.apiService.updateAssignment(assignmentId, this.updatedData).subscribe((response) => {
+    // Handle the response, e.g., update the assignment in the UI
+    console.log('Assignment updated:', response);
+
+    // Clear the updatedData object after the update is complete
+    this.updatedData = {};
+
+    // Hide the edit form
+    this.showEditForm = false;
+  });
+}
+openeditform(assignemntId:any){
+  this.router.navigate([`editassignment/${assignemntId}`])
+
+}
 }
