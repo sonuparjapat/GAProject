@@ -102,8 +102,24 @@ submitAssignment(assignmentId: string, link: string, ): Observable<any> {
 
 
 
+// get instructer assignments
+getInstructorAssignments(): Observable<any[]> {
+  // Set the Authorization header with the JWT token
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  });
 
+  return this.http.get<any[]>(`${this.baseUrl}/getinstructorassignment`, { headers });
+}
+// create instructer assignments
+createInstructorAssignment(assignmentData: any): Observable<any> {
+  // Set the Authorization header with the JWT token
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  });
 
+  return this.http.post<any>(`${this.baseUrl}/assignment/instructorassignment`, assignmentData, { headers });
+}
 
 
 

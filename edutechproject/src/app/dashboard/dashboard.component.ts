@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,11 @@ export class DashboardComponent implements OnInit {
   creatingProfile: boolean = false;
   editingProfile = false; // Initialize the editingProfile flag
   assignments: any[] = []; // Initialize with an empty array or fetch data from your service
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private router: Router,
+    private apiService: ApiService // Inject ApiService
+  ) {}
+
 
   ngOnInit() {
     this.getUserProfile();
@@ -22,6 +27,10 @@ export class DashboardComponent implements OnInit {
     this.apiService.getAllAssignments().subscribe((data) => {
       this.assignments = data;
     });
+    this.apiService.getInstructorAssignments().subscribe((data:any) => {
+      this.assignments = data.msg;
+    });
+  
   }
 
   getUserProfile() {
@@ -184,8 +193,16 @@ cancelstudentEdit() {
 }
 
 // assignments
+// openAssignmentCreationForm() {
+//   // You can navigate to a new route or show a modal for assignment creation
+//   // Example: Navigate to a route for assignment creation
+//   this.router.navigate(['/create-assignment']);
+// }
 
-
-
+openCreateAssignmentForm() {
+  // You can navigate to a new route or show a modal for assignment creation
+  // Example: Navigate to a route for assignment creation
+  this.router.navigate(['/create-assignment']);
+}
 
 }

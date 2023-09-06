@@ -1,0 +1,67 @@
+<div class="bg-white shadow-md rounded-lg p-4">
+    <h2>Create Assignment</h2>
+    <form [formGroup]="assignmentForm" (ngSubmit)="submitAssignment()">
+      <div class="mb-4">
+        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Assignment Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="w-full p-2 border rounded shadow-sm"
+          required
+        >
+      </div>
+  
+      <div class="mb-4">
+        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Assignment Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="w-full p-2 border rounded shadow-sm"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="mb-4">
+        <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">Deadline</label>
+        <input
+          type="date"
+          id="deadline"
+          formControlName="deadline"
+          class="w-full p-2 border rounded shadow-sm"
+          required
+        >
+      </div>
+  
+      <div class="mb-4">
+        <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Assignment Type</label>
+        <select
+          id="type"
+          formControlName="type"
+          class="w-full p-2 border rounded shadow-sm"
+          required
+        >
+          <option value="frontend">Frontend</option>
+          <option value="backend">Backend</option>
+          <option value="fullstack">Fullstack</option>
+        </select>
+      </div>
+  
+      <div class="mb-4">
+        <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Assignment Date</label>
+        <input
+          type="date"
+          id="date"
+          formControlName="date"
+          class="w-full p-2 border rounded shadow-sm"
+          required
+        >
+      </div>
+  
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue">
+        Create Assignment
+      </button>
+    </form>
+  </div>
+  
