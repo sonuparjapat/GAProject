@@ -12,13 +12,16 @@ export class DashboardComponent implements OnInit {
   loginuser:any=localStorage.getItem("loginas")
   creatingProfile: boolean = false;
   editingProfile = false; // Initialize the editingProfile flag
-  
+  assignments: any[] = []; // Initialize with an empty array or fetch data from your service
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.getUserProfile();
     this.getstudentProfile()
-    console.log(this.loginuser)
+   this.getallassignments()
+    this.apiService.getAllAssignments().subscribe((data) => {
+      this.assignments = data;
+    });
   }
 
   getUserProfile() {
@@ -33,7 +36,13 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-
+getallassignments(){
+  this.apiService.getAllAssignments().subscribe((response:any)=>{
+  this.assignments=response.msg
+  },(error)=>{
+    console.log(error.error.msg)
+  })
+}
 
 
 
@@ -173,6 +182,10 @@ toggleEditingstudentProfile() {
 cancelstudentEdit() {
   this.editingstudentProfile = false;
 }
+
+// assignments
+
+
 
 
 }

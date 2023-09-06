@@ -68,17 +68,37 @@ export class ApiService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-  console.log(token)
+  // console.log(token)
     return this.http.patch(url, editedProfile, { headers });
   }
 
 
+// getting all assignments
+getAllAssignments(): Observable<any[]> {
+  const token=localStorage.getItem("token")
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  return this.http.get<any[]>(`${this.baseUrl}/assignment/getassignments`, { headers });
+}
+// assignment details
+getAssignmentDetails(assignmentId: string): Observable<any> {
+  const token=localStorage.getItem("token")
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  return this.http.get<any>(`${this.baseUrl}/assignment/getassignment/${assignmentId}`, { headers });
+}
+// submit assignment
+submitAssignment(assignmentId: string, link: string, ): Observable<any> {
+  const token=localStorage.getItem("token")
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  const body = { link }; // Assuming the API expects a request body with the 'link' field
+  return this.http.post<any>(`${this.baseUrl}/assignment/submitassignment`, body, { headers });
+}
 
-
-
-
-
-
+  // Function to mark an assignment as completed
+  markAssignmentAsCompleted(assignmentId: string): Observable<any> {
+    const token=localStorage.getItem("token")
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.patch<any>(`${this.baseUrl}/assignment/statuschange/${assignmentId}`, {}, { headers });
+  }
 
 
 
