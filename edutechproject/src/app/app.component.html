@@ -1,10 +1,15 @@
+<!-- app.component.html -->
 <nav class="bg-blue-500 p-4 text-white">
   <div class="container mx-auto flex justify-between items-center">
     <a routerLink="/" class="font-semibold text-xl">Academyfy</a>
     <div>
-      <a *ngIf="!usertoken" routerLink="/login" class="ml-4">Login</a>
-      <button *ngIf="usertoken" (click)="logout()"  class="bg-blue-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105">logOut</button>
-      <a *ngIf="!usertoken" routerLink="/register" class="ml-4">Register</a>
+      <ng-container *ngIf="!authService.isAuthenticated(); else loggedIn">
+        <a routerLink="/login" class="ml-4">Login</a>
+        <a routerLink="/register" class="ml-4">Register</a>
+      </ng-container>
+      <ng-template #loggedIn>
+        <button (click)="logout()" class="bg-blue-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105">Log Out</button>
+      </ng-template>
     </div>
   </div>
 </nav>
